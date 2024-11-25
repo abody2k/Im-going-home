@@ -8,10 +8,18 @@ var current_rotation = Vector2(180,180)
 var rota = 0.0
 var is_possessing = false
 var possessed_obj : CharacterBody3D
+var energy : int = 10
+
+
+
 func unpossess():
 	is_possessing = false
 	visible = true
 	reparent(get_parent().get_parent())
+	
+	
+	
+	
 func possess_me(possessed_body: CharacterBody3D):
 	is_possessing=true
 	possessed_obj = possessed_body
@@ -20,6 +28,8 @@ func possess_me(possessed_body: CharacterBody3D):
 	visible=false
 	$AnimationPlayer.play("posessing")
 	possessed_body.is_possessed=true
+	energy -=1
+	$Control/AnimatedSprite2D.play("reduce_energy")
 	pass
 	
 	
