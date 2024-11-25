@@ -16,3 +16,8 @@ mesh = SubResource("BoxMesh_qi13p")
 
 [node name="Player" parent="." instance=ExtResource("1_1alg3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.696076, 0.717968, 0, -0.717968, 0.696076, 0, 1.74599, 0)
+light_energy = 1.399
+light_angular_distance = 50.91
