@@ -7,12 +7,27 @@ const ROTATION_RADIUS = 5
 var current_rotation = Vector2(180,180)
 var rota = 0.0
 var is_possessing = false
-
-
+var possessed_obj : CharacterBody3D
+func unpossess():
+	is_possessing = false
+	visible = true
+	reparent(get_parent().get_parent())
+func possess_me(possessed_body: CharacterBody3D):
+	is_possessing=true
+	possessed_obj = possessed_body
+	look_at(possessed_body.global_position)
+	reparent(possessed_body)
+	visible=false
+	$AnimationPlayer.play("posessing")
+	possessed_body.is_possessed=true
+	pass
+	
+	
 func _ready():
+	
 	Input.mouse_mode =Input.MOUSE_MODE_CAPTURED
 
-func movement(delta : float):
+func movement(_delta : float):
 	if is_possessing:
 		return
 	
@@ -33,7 +48,9 @@ func movement(delta : float):
 func _physics_process(delta):
 		movement(delta)
 
-
+func possession_ui(turn: bool):
+	$Control.visible = turn
+	pass
 func _input(event):
 	
 	if event is InputEventMouseMotion:
@@ -54,3 +71,10 @@ func _input(event):
 		pass
 		
 	pass
+
+
+func _on_animation_player_animation_finished(anim_name):
+	print(anim_name)
+	if anim_name == "posessing":
+		possessed_obj.set_physics_process(true)
+	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c33m3aa2xvprq"]
+[gd_scene load_steps=10 format=3 uid="uid://c33m3aa2xvprq"]
 
 [ext_resource type="Script" path="res://scripts/ship_solider.gd" id="1_52w68"]
 
@@ -10,7 +10,26 @@ radius = 0.525099
 
 [sub_resource type="BoxMesh" id="BoxMesh_21510"]
 
+[sub_resource type="Animation" id="Animation_cb8n3"]
+resource_name = "collapsing"
+
+[sub_resource type="Animation" id="Animation_xdt51"]
+resource_name = "movement"
+
+[sub_resource type="Animation" id="Animation_wskrs"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8fs5"]
+_data = {
+"collapsing": SubResource("Animation_cb8n3"),
+"idle": SubResource("Animation_wskrs"),
+"movement": SubResource("Animation_xdt51")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8m4dj"]
+
 [node name="ship_solider" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_52w68")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -22,3 +41,19 @@ shape = SubResource("CylinderShape3D_epw4n")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.89105e-08, 0, 0.326377, 0, 0.195524, 0, -1.34772, 0, -1.42664e-08, -0.017808, 0, -1.02514)
 mesh = SubResource("BoxMesh_21510")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g8fs5")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.984696)
+shape = SubResource("BoxShape3D_8m4dj")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_shape_entered" from="Area3D" to="." method="player_entered"]
+[connection signal="body_shape_exited" from="Area3D" to="." method="player_exited"]
