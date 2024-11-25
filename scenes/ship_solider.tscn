@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c33m3aa2xvprq"]
+[gd_scene load_steps=5 format=3 uid="uid://c33m3aa2xvprq"]
 
 [ext_resource type="Script" path="res://scripts/ship_solider.gd" id="1_52w68"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6omna"]
+[sub_resource type="PrismMesh" id="PrismMesh_i88af"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i1d5c"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_epw4n"]
+height = 1.00885
+radius = 0.525099
+
+[sub_resource type="BoxMesh" id="BoxMesh_21510"]
 
 [node name="ship_solider" type="CharacterBody3D"]
 script = ExtResource("1_52w68")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_6omna")
+mesh = SubResource("PrismMesh_i88af")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_i1d5c")
+shape = SubResource("CylinderShape3D_epw4n")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.89105e-08, 0, 0.326377, 0, 0.195524, 0, -1.34772, 0, -1.42664e-08, -0.017808, 0, -1.02514)
+mesh = SubResource("BoxMesh_21510")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://df5fkmsr7cytd"]
+[gd_scene load_steps=5 format=3 uid="uid://df5fkmsr7cytd"]
 
 [ext_resource type="PackedScene" uid="uid://h6nwi8e7s8al" path="res://scenes/player.tscn" id="1_1alg3"]
+[ext_resource type="PackedScene" uid="uid://c33m3aa2xvprq" path="res://scenes/ship_solider.tscn" id="2_g4aor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ak0"]
 albedo_color = Color(0.0664833, 0.0704923, 0.062896, 1)
@@ -21,3 +22,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 0.696076, 0.717968, 0, -0.717968, 0.696076, 0, 1.74599, 0)
 light_energy = 1.399
 light_angular_distance = 50.91
+
+[node name="pos1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8096, 1, 1)
+top_level = true
+
+[node name="pos2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75381, 1, 1)
+top_level = true
+
+[node name="ship_solider" parent="." node_paths=PackedStringArray("pos") instance=ExtResource("2_g4aor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.900494, 1, 1)
+pos = [NodePath("../pos1"), NodePath("../pos2")]
+solider_type = 1
+dynamic_movement_time = 5.0

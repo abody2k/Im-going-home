@@ -1,30 +1,59 @@
 extends CharacterBody3D
 
-
+enum SOLIDER_TYPE {STATIC, DYNAMIC}
+@export var pos : Array[Node3D]
+@export var solider_type : SOLIDER_TYPE
+@export var dynamic_movement_time : float = 10.0
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var is_possessed = false
 
-func movement():
+
+func go_backward():
+	var tween = get_tree().create_tween()
+	tween.finished.connect(go_forward)
+	look_at(pos[1].global_position)
+	tween.tween_property(self,"global_position",pos[1].global_position,dynamic_movement_time)
+
+func go_forward():
+	var tween = get_tree().create_tween()
+	tween.finished.connect(go_backward)
+	look_at(pos[0].global_position)
+	tween.tween_property(self,"global_position",pos[0].global_position,dynamic_movement_time)
+	
+func _ready():
+	
+	if solider_type != SOLIDER_TYPE.STATIC:
+		go_forward()
+
+func collapse_character():
 	pass
+		#TODO LEAVE this body
+		#play collapsing animation
+		#change
+func movement(delta : float):
+	
+	if is_possessed:
+		
+		if Input.is_action_just_pressed("action"):
+			collapse_character()
+			
+		var fb = Input.get_axis("forward","backward")
+		var lr = Input.get_axis("left","right")
+		if fb != 0 or lr !=0 :
+			pass
+			#PLAY CERTAIN ANIMATION
+			
+			
+			
+		pass
+
+		
+		
+		
+		pass
+	pass
+	
+	
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+	pass
