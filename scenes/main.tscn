@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://df5fkmsr7cytd"]
+
+[ext_resource type="PackedScene" uid="uid://h6nwi8e7s8al" path="res://scenes/player.tscn" id="1_1alg3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ak0"]
+albedo_color = Color(0.0664833, 0.0704923, 0.062896, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qi13p"]
+size = Vector3(5.25, 0.09, 3.545)
+
+[node name="main" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_f3ak0")
+mesh = SubResource("BoxMesh_qi13p")
+
+[node name="Player" parent="." instance=ExtResource("1_1alg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
