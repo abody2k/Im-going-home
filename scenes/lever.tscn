@@ -18,6 +18,8 @@ _data = {
 size = Vector3(3.66994, 2.28809, 3.16809)
 
 [node name="lever" type="AnimatableBody3D"]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("1_tpkna")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -41,3 +43,37 @@ shape = SubResource("BoxShape3D_v8x8g")
 
 [node name="player_position" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.32564)
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.093
+offset_bottom = -0.264
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.385
+anchor_right = 0.664
+anchor_bottom = 0.733
+offset_left = -0.52002
+offset_top = 15.0
+offset_right = 0.0719604
+offset_bottom = 15.02
+grow_horizontal = 2
+text = "Press space to close this door indefinitely"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area3D" to="." method="_on_area_3d_body_shape_exited"]

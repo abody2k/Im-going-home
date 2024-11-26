@@ -12,6 +12,8 @@ var energy : int = 10
 
 
 
+
+
 func unpossess():
 	is_possessing = false
 	visible = true

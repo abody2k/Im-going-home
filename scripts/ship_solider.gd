@@ -20,6 +20,18 @@ const STAR = preload("res://scenes/star.tscn")
 var made_stars = false
 var depossessing = false
 
+var can_move = true
+
+
+
+
+func pull_lever():
+	can_move=false
+	rotation_degrees = Vector3(0,0,0)
+	$AnimationPlayer.play("pull_down")
+	pass
+	
+	
 func go_backward():
 	tween2 = get_tree().create_tween()
 	look_at(pos[1].global_position)
@@ -96,7 +108,9 @@ func movement(_delta : float):
 	
 func _physics_process(delta):
 	
-	
+	if !can_move:
+		return
+		
 	movement(delta)
 	
 	
@@ -143,7 +157,8 @@ func _on_animation_player_animation_finished(anim_name):
 			#RELOAD
 			#ATTACK AGAIN
 			$reload.start()
-			pass
+		"pull_down":
+			can_move=true
 
 
 func player_entered(_body_rid, body, _body_shape_index, _local_shape_index):

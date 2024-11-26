@@ -12,12 +12,12 @@ func _process(delta):
 	if $doorControl.visible and Input.is_action_just_pressed("action") and !$AnimationPlayer.is_playing():
 		door_opened = !door_opened
 		
-	if door_opened:
-		$AnimationPlayer.play("close_door")
-		$doorControl/Panel/RichTextLabel.text = "Click space to open the door"
-	else:
-		$AnimationPlayer.play("open_door")
-		$doorControl/Panel/RichTextLabel.text = "Click space to close the door"
+		if door_opened:
+			$AnimationPlayer.play("close_door")
+			$doorControl/Panel/RichTextLabel.text = "Click space to open the door"
+		else:
+			$AnimationPlayer.play("open_door")
+			$doorControl/Panel/RichTextLabel.text = "Click space to close the door"
 		
 
 

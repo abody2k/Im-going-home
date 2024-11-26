@@ -21,6 +21,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_nt82v"]
+resource_name = "dying"
+
 [sub_resource type="Animation" id="Animation_dmmf8"]
 resource_name = "idle"
 
@@ -29,9 +32,6 @@ resource_name = "moving"
 
 [sub_resource type="Animation" id="Animation_45sha"]
 resource_name = "posessing"
-
-[sub_resource type="Animation" id="Animation_nt82v"]
-resource_name = "dying"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrhvg"]
 _data = {

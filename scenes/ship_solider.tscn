@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c33m3aa2xvprq"]
+[gd_scene load_steps=13 format=3 uid="uid://c33m3aa2xvprq"]
 
 [ext_resource type="Script" path="res://scripts/ship_solider.gd" id="1_52w68"]
 
@@ -10,6 +10,9 @@ radius = 0.525099
 
 [sub_resource type="BoxMesh" id="BoxMesh_21510"]
 
+[sub_resource type="Animation" id="Animation_d848w"]
+resource_name = "Attack"
+
 [sub_resource type="Animation" id="Animation_cb8n3"]
 resource_name = "collapsing"
 
@@ -19,15 +22,16 @@ resource_name = "idle"
 [sub_resource type="Animation" id="Animation_xdt51"]
 resource_name = "movement"
 
-[sub_resource type="Animation" id="Animation_d848w"]
-resource_name = "Attack"
+[sub_resource type="Animation" id="Animation_teis8"]
+resource_name = "pull_down"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g8fs5"]
 _data = {
 "Attack": SubResource("Animation_d848w"),
 "collapsing": SubResource("Animation_cb8n3"),
 "idle": SubResource("Animation_wskrs"),
-"movement": SubResource("Animation_xdt51")
+"movement": SubResource("Animation_xdt51"),
+"pull_down": SubResource("Animation_teis8")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8m4dj"]
