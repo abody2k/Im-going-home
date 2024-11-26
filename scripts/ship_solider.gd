@@ -71,7 +71,10 @@ func possess():
 	
 	
 	
+func on_alert():
 	
+	#
+	pass
 	
 func movement(_delta : float):
 	

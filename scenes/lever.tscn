@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxetb305ilyns"]
+
+[ext_resource type="Script" path="res://scripts/lever.gd" id="1_tpkna"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_03e5n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_enldm"]
+
+[sub_resource type="Animation" id="Animation_4py13"]
+resource_name = "bring_it_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrat7"]
+_data = {
+"bring_it_down": SubResource("Animation_4py13")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8x8g"]
+size = Vector3(3.66994, 2.28809, 3.16809)
+
+[node name="lever" type="AnimatableBody3D"]
+script = ExtResource("1_tpkna")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_03e5n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_enldm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yrat7")
+}
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.379967, 0.644043, 1.08405)
+shape = SubResource("BoxShape3D_v8x8g")
+
+[node name="player_position" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.32564)

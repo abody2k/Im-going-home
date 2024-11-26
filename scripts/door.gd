@@ -9,7 +9,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if $doorControl.visible and Input.is_action_just_pressed("action"):
+	if $doorControl.visible and Input.is_action_just_pressed("action") and !$AnimationPlayer.is_playing():
 		door_opened = !door_opened
 		
 	if door_opened:
