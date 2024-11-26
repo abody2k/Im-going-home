@@ -1,9 +1,11 @@
 extends CharacterBody3D
 
 enum SOLIDER_TYPE {STATIC, DYNAMIC}
+enum MODES {OBSERVING, ATTACKING}
 @export var pos : Array[Node3D]
 @export var solider_type : SOLIDER_TYPE
 @export var dynamic_movement_time : float = 10.0
+const ATTACKING_RANGE = 10
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var is_possessed = false
@@ -11,6 +13,7 @@ var can_it_be_possessed = false
 var tween1 : Tween 
 var tween2 : Tween
 var player : CharacterBody3D
+var mode : MODES = MODES.OBSERVING
 
 
 func go_backward():
@@ -25,7 +28,8 @@ func go_forward():
 	tween1.tween_property(self,"global_position",pos[0].global_position,dynamic_movement_time)
 	tween1.finished.connect(go_backward)
 	
-	
+
+			
 func _ready():
 	
 	if solider_type != SOLIDER_TYPE.STATIC:
@@ -38,9 +42,7 @@ func collapse_character():
 	is_possessed=false
 	can_it_be_possessed=false
 	pass
-		#TODO LEAVE this body
-		#play collapsing animation
-		#change
+
 
 func possess():
 	solider_type = SOLIDER_TYPE.STATIC
@@ -80,23 +82,44 @@ func _physics_process(delta):
 	
 	
 	if can_it_be_possessed and is_possessed == false and Input.is_action_just_pressed("action"):
-		print("possessed successfully")
 		player.call("possess_me",self)
 		possess()
 		set_physics_process(false)
 		pass
 	pass
+	
+	
+	if mode == MODES.ATTACKING:
+		look_at(player.global_position)
+
+
+
+
+func attack():
+	$AnimationPlayer.play("Attack")
+	pass
+
+
+
+
 
 
 func _on_animation_player_animation_finished(anim_name):
 
-	if anim_name == "collapsing":
-		$Area3D.queue_free()
-		player = null
-		process_mode=PROCESS_MODE_DISABLED
-		is_possessed= false
-		pass
-	pass # Replace with function body.
+	match anim_name:
+		"collapsing":
+			$Area3D.queue_free()
+			player = null
+			process_mode=PROCESS_MODE_DISABLED
+			is_possessed= false
+		"Attack":
+			
+			
+			#ATTACK LOGIC
+			#RELOAD
+			#ATTACK AGAIN
+			$reload.start()
+			pass
 
 
 func player_entered(_body_rid, body, _body_shape_index, _local_shape_index):
@@ -116,4 +139,35 @@ func player_exited(_body_rid, body, _body_shape_index, _local_shape_index):
 	player = body
 	#TODO
 	#HIDE POSSESSION MENU
+	pass # Replace with function body.
+
+
+func _on_player_observed(_body_rid, body, _body_shape_index, _local_shape_index):
+	
+	#stop moving
+	if tween1:
+		tween1.kill()
+	if tween2:
+		tween2.kill()
+		
+		
+	player = body
+	mode = MODES.ATTACKING
+	attack()
+	
+	
+	pass # Replace with function body.
+
+
+func _on_reload_timeout():
+	
+	#is player in range ? if so attack again, else go back to normal mode
+	
+	if global_position.distance_squared_to(player.global_position) <= ATTACKING_RANGE:
+		attack()
+	else:
+		player = null
+		mode = MODES.OBSERVING
+		_ready()
+	
 	pass # Replace with function body.

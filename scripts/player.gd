@@ -64,7 +64,6 @@ func possession_ui(turn: bool):
 func _input(event):
 	
 	if event is InputEventMouseMotion:
-		print((event as InputEventMouseMotion).screen_relative)
 		
 
 		
@@ -74,9 +73,7 @@ func _input(event):
 		$Camera3D.position.x = cos(deg_to_rad((rota)*0.5)) * ROTATION_RADIUS
 		$Camera3D.position.z = sin(deg_to_rad((rota)*0.5)) * ROTATION_RADIUS
 		
-		
-		#print(rota)
-		#print($Camera3D.position)
+	
 		$Camera3D.look_at($CollisionShape3D/MeshInstance3D.global_position)
 		pass
 		
@@ -84,7 +81,6 @@ func _input(event):
 
 
 func _on_animation_player_animation_finished(anim_name):
-	print(anim_name)
 	if anim_name == "posessing":
 		possessed_obj.set_physics_process(true)
 	pass # Replace with function body.
