@@ -144,6 +144,7 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func player_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+	print(body)
 	(body as CharacterBody3D).call("possession_ui",true)
 	can_it_be_possessed=true
 	player = body

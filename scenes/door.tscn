@@ -9,7 +9,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_f1jj5"]
 size = Vector3(4.37512, 2.16113, 2.25488)
 
-[node name="AnimatableBody3D" type="AnimatableBody3D"]
+[node name="door" type="AnimatableBody3D"]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("1_bw37m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -20,12 +22,14 @@ shape = SubResource("BoxShape3D_m8ctp")
 
 [node name="playerDetector" type="Area3D" parent="."]
 collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="playerDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549356, 0.580566, 0.627441)
 shape = SubResource("BoxShape3D_f1jj5")
 
 [node name="doorControl" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,9 +37,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="doorControl"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-disabled = true
-text = "Close the door indef"
+[node name="Panel" type="Panel" parent="doorControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.159
+offset_bottom = -0.0320053
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="doorControl/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click space to open the door"
+fit_content = true
+
+[connection signal="body_shape_entered" from="playerDetector" to="." method="_on_player_detector_body_shape_entered"]
+[connection signal="body_shape_exited" from="playerDetector" to="." method="_on_player_detector_body_shape_exited"]
