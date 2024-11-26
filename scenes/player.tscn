@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://h6nwi8e7s8al"]
+[gd_scene load_steps=11 format=3 uid="uid://h6nwi8e7s8al"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iqjob"]
 [ext_resource type="Texture2D" uid="uid://dd8id1tayyblt" path="res://icon.svg" id="2_l8lh5"]
@@ -30,8 +30,12 @@ resource_name = "moving"
 [sub_resource type="Animation" id="Animation_45sha"]
 resource_name = "posessing"
 
+[sub_resource type="Animation" id="Animation_nt82v"]
+resource_name = "dying"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrhvg"]
 _data = {
+"dying": SubResource("Animation_nt82v"),
 "idle": SubResource("Animation_dmmf8"),
 "moving": SubResource("Animation_hrwn2"),
 "posessing": SubResource("Animation_45sha")

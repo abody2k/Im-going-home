@@ -17,9 +17,19 @@ func unpossess():
 	visible = true
 	reparent(get_parent().get_parent())
 	
+### checks if the player can still go on or not, if the energy is less than or equal to 0 the player simply dies
+func check_energy_level():
+	if energy <=0:
+		$AnimationPlayer.play("dying")
+	pass	
 	
+func got_attacked():
 	
+	#play some effect when attacked
+	energy -=1
+	#animate the UI
 	
+	pass	
 func possess_me(possessed_body: CharacterBody3D):
 	is_possessing=true
 	possessed_obj = possessed_body
@@ -81,6 +91,9 @@ func _input(event):
 
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "posessing":
-		possessed_obj.set_physics_process(true)
-	pass # Replace with function body.
+	match anim_name:
+		"posessing":
+			possessed_obj.set_physics_process(true)
+		"dying":
+			get_tree().reload_current_scene()
+			pass
