@@ -72,5 +72,9 @@ libraries = {
 "": SubResource("AnimationLibrary_m4ulu")
 }
 
+[node name="lockedDoor" type="AudioStreamPlayer3D" parent="."]
+
+[node name="openDoor" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="body_shape_entered" from="playerDetector" to="." method="_on_player_detector_body_shape_entered"]
 [connection signal="body_shape_exited" from="playerDetector" to="." method="_on_player_detector_body_shape_exited"]

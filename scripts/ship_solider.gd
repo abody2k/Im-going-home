@@ -64,11 +64,15 @@ func _ready():
 	made_stars=true
 
 func collapse_character():
+	print("called this ...")
+	$Area3D.queue_free()
+	is_possessed=false
+	can_it_be_possessed=false
+	depossessing = true
+	print([is_possessed,can_it_be_possessed,depossessing])
 	
 	$AnimationPlayer.play("collapsing")
 	player.call("unpossess")
-	is_possessed=false
-	can_it_be_possessed=false
 	pass
 
 
@@ -115,6 +119,7 @@ func _physics_process(delta):
 	
 	
 	if can_it_be_possessed and is_possessed == false and Input.is_action_just_pressed("action"):
+		print("I WAS CALLED")
 		player.call("possess_me",self)
 		possess()
 		set_physics_process(false)
@@ -141,7 +146,6 @@ func _on_animation_player_animation_finished(anim_name):
 
 	match anim_name:
 		"collapsing":
-			$Area3D.queue_free()
 			player = null
 			process_mode=PROCESS_MODE_DISABLED
 			is_possessed= false
