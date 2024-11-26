@@ -36,3 +36,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.900494, 1, 1)
 pos = [NodePath("../pos1"), NodePath("../pos2")]
 solider_type = 1
 dynamic_movement_time = 5.0
+
+[node name="ship_solider2" parent="." node_paths=PackedStringArray("pos") instance=ExtResource("2_g4aor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01219, 1, 1)
+pos = [NodePath("../pos1"), NodePath("../pos2")]
+dynamic_movement_time = 5.0
+authority = 1
+
+[node name="ship_solider3" parent="." node_paths=PackedStringArray("pos") instance=ExtResource("2_g4aor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17958, 1, 1)
+pos = [NodePath("../pos1"), NodePath("../pos2")]
+dynamic_movement_time = 5.0
+authority = 3

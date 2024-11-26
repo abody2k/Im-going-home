@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 var player_position_set = false
-const SPEED = 115.0
+const SPEED = 70.0
 
 func set_player_position(pos : Vector3):
 	look_at(pos)

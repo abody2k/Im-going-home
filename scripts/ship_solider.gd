@@ -15,6 +15,9 @@ var tween1 : Tween
 var tween2 : Tween
 var player : CharacterBody3D
 var mode : MODES = MODES.OBSERVING
+@export var authority = 0
+const STAR = preload("res://scenes/star.tscn")
+var made_stars = false
 
 
 func go_backward():
@@ -35,6 +38,18 @@ func _ready():
 	
 	if solider_type != SOLIDER_TYPE.STATIC:
 		go_forward()
+	
+	if made_stars:
+		return
+	print('done')
+	print(authority)
+	print(range(authority))
+	for i in range(authority):
+		print(i)
+		var star = STAR.instantiate()
+		$stars.add_child(star)
+		star.position=Vector3.ZERO + Vector3(i,0,0)
+	made_stars=true
 
 func collapse_character():
 	

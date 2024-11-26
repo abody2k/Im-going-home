@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5i6q2k3stlye"]
+
+[ext_resource type="Texture2D" uid="uid://447os7cqvuj3" path="res://star.png" id="1_mpooj"]
+
+[node name="star" type="Sprite3D"]
+transform = Transform3D(0.27, 0, 0, 0, 0.27, 0, 0, 0, 0.27, 0, 0, 0)
+texture = ExtResource("1_mpooj")
