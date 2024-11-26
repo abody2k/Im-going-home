@@ -18,7 +18,7 @@ var mode : MODES = MODES.OBSERVING
 @export var authority = 0
 const STAR = preload("res://scenes/star.tscn")
 var made_stars = false
-
+var depossessing = false
 
 func go_backward():
 	tween2 = get_tree().create_tween()
@@ -77,7 +77,7 @@ func movement(_delta : float):
 	
 	if is_possessed:
 		
-		if Input.is_action_just_pressed("action"):
+		if Input.is_action_just_pressed("action") and !depossessing:
 			collapse_character()
 			return
 			
@@ -180,7 +180,8 @@ func _on_player_observed(_body_rid, body, _body_shape_index, _local_shape_index)
 	
 	pass # Replace with function body.
 
-
+func disable_depossessing(depos:bool):
+	depossessing=depos
 func _on_reload_timeout():
 	
 	#is player in range ? if so attack again, else go back to normal mode

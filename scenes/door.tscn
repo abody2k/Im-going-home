@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://blbpalpb8yaot"]
+[gd_scene load_steps=8 format=3 uid="uid://blbpalpb8yaot"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_bw37m"]
 
@@ -8,6 +8,18 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f1jj5"]
 size = Vector3(4.37512, 2.16113, 2.25488)
+
+[sub_resource type="Animation" id="Animation_nvvqk"]
+resource_name = "open_door"
+
+[sub_resource type="Animation" id="Animation_4s5wo"]
+resource_name = "close_door"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4ulu"]
+_data = {
+"close_door": SubResource("Animation_4s5wo"),
+"open_door": SubResource("Animation_nvvqk")
+}
 
 [node name="door" type="AnimatableBody3D"]
 collision_layer = 8
@@ -54,6 +66,11 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Click space to open the door"
 fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m4ulu")
+}
 
 [connection signal="body_shape_entered" from="playerDetector" to="." method="_on_player_detector_body_shape_entered"]
 [connection signal="body_shape_exited" from="playerDetector" to="." method="_on_player_detector_body_shape_exited"]
