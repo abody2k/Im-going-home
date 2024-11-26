@@ -27,6 +27,7 @@ func got_attacked():
 	
 	#play some effect when attacked
 	energy -=1
+	check_energy_level()
 	#animate the UI
 	
 	pass	
@@ -39,7 +40,9 @@ func possess_me(possessed_body: CharacterBody3D):
 	$AnimationPlayer.play("posessing")
 	possessed_body.is_possessed=true
 	energy -=1
+	got_attacked()
 	$Control/AnimatedSprite2D.play("reduce_energy")
+	
 	pass
 	
 	

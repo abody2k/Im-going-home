@@ -5,7 +5,8 @@ enum MODES {OBSERVING, ATTACKING}
 @export var pos : Array[Node3D]
 @export var solider_type : SOLIDER_TYPE
 @export var dynamic_movement_time : float = 10.0
-const ATTACKING_RANGE = 10
+const BULLET = preload("res://scenes/bullet.tscn")
+const ATTACKING_RANGE = 100
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var is_possessed = false
@@ -114,7 +115,12 @@ func _on_animation_player_animation_finished(anim_name):
 			is_possessed= false
 		"Attack":
 			
+			var bullet = BULLET.instantiate()
 			
+			
+			get_tree().root.add_child((bullet))
+			bullet.global_position = $aim.global_position
+			bullet.set_player_position(player.global_position)
 			#ATTACK LOGIC
 			#RELOAD
 			#ATTACK AGAIN
