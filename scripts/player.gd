@@ -15,6 +15,7 @@ var energy : int = 10
 func unpossess():
 	is_possessing = false
 	visible = true
+	collision_layer=1
 	reparent(get_parent().get_parent())
 	
 ### checks if the player can still go on or not, if the energy is less than or equal to 0 the player simply dies
@@ -40,14 +41,16 @@ func possess_me(possessed_body: CharacterBody3D):
 	$AnimationPlayer.play("posessing")
 	possessed_body.is_possessed=true
 	energy -=1
-	got_attacked()
+	check_energy_level()
 	$Control/AnimatedSprite2D.play("reduce_energy")
+	collision_layer=0
+	
 	
 	pass
 	
 	
 func _ready():
-	
+
 	Input.mouse_mode =Input.MOUSE_MODE_CAPTURED
 
 func movement(_delta : float):
