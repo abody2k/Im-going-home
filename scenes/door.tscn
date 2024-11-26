@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://blbpalpb8yaot"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_bw37m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8k5bo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8ctp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f1jj5"]
+size = Vector3(4.37512, 2.16113, 2.25488)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D"]
+script = ExtResource("1_bw37m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_8k5bo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m8ctp")
+
+[node name="playerDetector" type="Area3D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0549356, 0.580566, 0.627441)
+shape = SubResource("BoxShape3D_f1jj5")
+
+[node name="doorControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="doorControl"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+disabled = true
+text = "Close the door indef"
