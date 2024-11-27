@@ -19,15 +19,26 @@ var mode : MODES = MODES.OBSERVING
 const STAR = preload("res://scenes/star.tscn")
 var made_stars = false
 var depossessing = false
-
+@export var path : Path3D 
+var current_path_index=-1
 var can_move = true
+var on_alert = false
 
-
+func follow_path():
+	if current_path_index == path.curve.point_count -1:
+		on_alert= false
+		return
+	current_path_index+=1
+	var temp_tween=get_tree().create_tween()
+	temp_tween.finished.connect(follow_path)
+	look_at(Vector3(path.curve.get_point_position(current_path_index).x,global_position.y,path.curve.get_point_position(current_path_index).z))
+	$AnimationPlayer.play("movement")
+	temp_tween.tween_property(self,"global_position",Vector3(path.curve.get_point_position(current_path_index).x,global_position.y,path.curve.get_point_position(current_path_index).z),2
+	)
 func alert():
 	if !is_possessed and can_move:
 		print("hola hola")
-		pass
-	pass
+		follow_path()
 
 
 func pull_lever():
@@ -92,10 +103,7 @@ func possess():
 	
 	
 	
-func on_alert():
-	
-	#
-	pass
+
 	
 func movement(_delta : float):
 	
@@ -107,8 +115,10 @@ func movement(_delta : float):
 			
 		var fb = Input.get_axis("forward","backward")
 		var lr = Input.get_axis("left","right")
-		
-		$AnimationPlayer.play("movement")
+		if fb != 0 :
+			$AnimationPlayer.play("movement")
+		else:
+			$AnimationPlayer.stop()
 		velocity = basis.z * SPEED * fb
 		rotate_y(deg_to_rad(lr * SPEED))
 		move_and_slide()
@@ -150,6 +160,8 @@ func attack():
 func _on_animation_player_animation_finished(anim_name):
 
 	match anim_name:
+		"movement":
+			pass
 		"collapsing":
 			player = null
 			can_move=false

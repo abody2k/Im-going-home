@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://df5fkmsr7cytd"]
+[gd_scene load_steps=8 format=3 uid="uid://df5fkmsr7cytd"]
 
 [ext_resource type="PackedScene" uid="uid://h6nwi8e7s8al" path="res://scenes/player.tscn" id="1_1alg3"]
 [ext_resource type="PackedScene" uid="uid://c33m3aa2xvprq" path="res://scenes/ship_solider.tscn" id="2_g4aor"]
@@ -10,6 +10,13 @@ albedo_color = Color(0.0664833, 0.0704923, 0.062896, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qi13p"]
 size = Vector3(5.25, 0.09, 3.545)
+
+[sub_resource type="Curve3D" id="Curve3D_tty0n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.911, 0, 0.549, 0, 0, 0, 0, 0, 0, 5.887, 0, -0.47, 0, 0, 0, 0, 0, 0, 15.157, 0, -3.474),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [node name="main" type="Node3D"]
 
@@ -45,11 +52,15 @@ pos = [NodePath("../pos1"), NodePath("../pos2")]
 dynamic_movement_time = 5.0
 authority = 1
 
-[node name="ship_solider3" parent="." node_paths=PackedStringArray("pos") groups=["dinning"] instance=ExtResource("2_g4aor")]
+[node name="ship_solider3" parent="." node_paths=PackedStringArray("pos", "path") groups=["dinning"] instance=ExtResource("2_g4aor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17958, 1, 1)
 pos = [NodePath("../pos1"), NodePath("../pos2")]
 dynamic_movement_time = 5.0
 authority = 3
+path = NodePath("Path3D")
+
+[node name="Path3D" type="Path3D" parent="ship_solider3"]
+curve = SubResource("Curve3D_tty0n")
 
 [node name="AnimatableBody3D" parent="." instance=ExtResource("3_8rbdm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.966075, 0, 4.86779)
