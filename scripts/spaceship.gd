@@ -37,4 +37,7 @@ func _physics_process(delta):
 	var direction = Input.get_axis("left", "right")
 	rotate(deg_to_rad(direction * delta*30))
 
-	move_and_slide()
+	var col = move_and_collide(velocity*delta)
+	if col :
+		col.get_collider()
+		#switch to the end scene
