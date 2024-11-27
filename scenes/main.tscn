@@ -45,7 +45,7 @@ pos = [NodePath("../pos1"), NodePath("../pos2")]
 dynamic_movement_time = 5.0
 authority = 1
 
-[node name="ship_solider3" parent="." node_paths=PackedStringArray("pos") instance=ExtResource("2_g4aor")]
+[node name="ship_solider3" parent="." node_paths=PackedStringArray("pos") groups=["dinning"] instance=ExtResource("2_g4aor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17958, 1, 1)
 pos = [NodePath("../pos1"), NodePath("../pos2")]
 dynamic_movement_time = 5.0
@@ -57,3 +57,5 @@ authority = 3
 
 [node name="lever" parent="." instance=ExtResource("4_24loo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0209, 0, 6.24122)
+label = "hola"
+group_name = "dinning"

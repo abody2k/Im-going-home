@@ -23,6 +23,11 @@ var depossessing = false
 var can_move = true
 
 
+func alert():
+	if !is_possessed and can_move:
+		print("hola hola")
+		pass
+	pass
 
 
 func pull_lever():
@@ -147,8 +152,11 @@ func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
 		"collapsing":
 			player = null
-			process_mode=PROCESS_MODE_DISABLED
+			can_move=false
 			is_possessed= false
+			process_mode=PROCESS_MODE_DISABLED
+			
+			
 		"Attack":
 			
 			var bullet = BULLET.instantiate()

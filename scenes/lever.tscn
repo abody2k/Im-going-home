@@ -74,6 +74,8 @@ offset_bottom = 15.02
 grow_horizontal = 2
 text = "Press space to close this door indefinitely"
 
+[node name="alert" type="AudioStreamPlayer" parent="."]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area3D" to="." method="_on_area_3d_body_shape_exited"]

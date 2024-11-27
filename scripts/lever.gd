@@ -1,8 +1,13 @@
 extends AnimatableBody3D
 
 var player : CharacterBody3D
+@export var label : String = ""
+@export var group_name : String= ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if label != "":
+		$Control/Panel/RichTextLabel.text = label
+		
 	pass # Replace with function body.
 
 
@@ -34,4 +39,11 @@ func _on_animation_player_animation_finished(anim_name):
 	player.call("disable_depossessing",false)
 	process_mode = PROCESS_MODE_DISABLED
 	$Area3D.queue_free()
+	
+	if label != "":
+		#play an alert audio
+		$alert.play()
+		get_tree().call_group(group_name,"alert")
+		#send signal to some group to come over here
+		pass
 	
