@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cps1jmdgq63g7"]
+[gd_scene load_steps=7 format=3 uid="uid://cps1jmdgq63g7"]
 
 [ext_resource type="Script" path="res://scripts/spaceship.gd" id="1_764uc"]
 [ext_resource type="Texture2D" uid="uid://f6fwyfqvfvdd" path="res://spaceship.png" id="1_w3m1y"]
 [ext_resource type="Texture2D" uid="uid://bu7wtr1w83rab" path="res://planet.png" id="2_6d6b0"]
+[ext_resource type="Texture2D" uid="uid://cq2wuin5fi53w" path="res://circle.png" id="4_tekd7"]
+[ext_resource type="Texture2D" uid="uid://bb2n6of3a58p3" path="res://arrow.png" id="5_labx4"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mpy4d"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="spaceship" type="CharacterBody2D" parent="."]
+position = Vector2(-3959, -2173)
 script = ExtResource("1_764uc")
 
 [node name="Spaceship" type="Sprite2D" parent="spaceship"]
@@ -47,3 +50,65 @@ z_index = 1
 position = Vector2(579, 334)
 scale = Vector2(-1437.02, 798.622)
 texture = SubResource("CanvasTexture_mpy4d")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fuel" type="ProgressBar" parent="CanvasLayer2/Control"]
+modulate = Color(0.258251, 0.991688, 0.237087, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.272
+anchor_bottom = 0.056
+offset_right = -0.344025
+offset_bottom = -0.288002
+value = 100.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.739
+anchor_right = 1.0
+anchor_bottom = 0.068
+offset_left = -0.328003
+offset_bottom = -0.064003
+grow_horizontal = 0
+text = "Contact distance : 0"
+
+[node name="circle" type="TextureRect" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -105.0
+offset_right = 397.0
+offset_bottom = 407.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.210598, 0.210598)
+texture = ExtResource("4_tekd7")
+
+[node name="compass" type="TextureRect" parent="CanvasLayer2/Control/circle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -71.2258
+offset_top = -37.9871
+offset_right = -71.2258
+offset_bottom = -37.9871
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(337.136, 313.394)
+texture = ExtResource("5_labx4")
