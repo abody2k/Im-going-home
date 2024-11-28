@@ -1,4 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://ccshbk3dgwckl"]
+[gd_scene load_steps=15 format=4 uid="uid://ccshbk3dgwckl"]
+
+[ext_resource type="Script" path="res://scenes/chamber.gd" id="1_rsejg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44rpo"]
 resource_name = "Material.024"
@@ -151,13 +153,32 @@ shadow_mesh = SubResource("ArrayMesh_qnb06")
 
 [sub_resource type="Animation" id="Animation_36vb0"]
 resource_name = "unfill"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("champer/Cylinder_002")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -114.257, -104.315, -114.257, 1, 1, -114.257, -10.432, -114.257)
+
+[sub_resource type="Animation" id="Animation_4qhwl"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("champer/Cylinder_002")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -114.257, -104.315, -114.257)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbogu"]
 _data = {
+"RESET": SubResource("Animation_4qhwl"),
 "unfill": SubResource("Animation_36vb0")
 }
 
 [node name="chamber" type="Node3D"]
+script = ExtResource("1_rsejg")
 
 [node name="champer" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9581, 32.4292, 253.963)
@@ -178,3 +199,5 @@ skeleton = NodePath("")
 libraries = {
 "": SubResource("AnimationLibrary_sbogu")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
