@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://df5fkmsr7cytd"]
+[gd_scene load_steps=9 format=3 uid="uid://df5fkmsr7cytd"]
 
 [ext_resource type="PackedScene" uid="uid://h6nwi8e7s8al" path="res://scenes/player.tscn" id="1_1alg3"]
 [ext_resource type="PackedScene" uid="uid://c33m3aa2xvprq" path="res://scenes/ship_solider.tscn" id="2_g4aor"]
 [ext_resource type="PackedScene" uid="uid://blbpalpb8yaot" path="res://scenes/door.tscn" id="3_8rbdm"]
 [ext_resource type="PackedScene" uid="uid://dxetb305ilyns" path="res://scenes/lever.tscn" id="4_24loo"]
+[ext_resource type="PackedScene" uid="uid://bvqhw6r0rica0" path="res://scenes/ship.tscn" id="5_3kvjt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ak0"]
 albedo_color = Color(0.0664833, 0.0704923, 0.062896, 1)
@@ -25,12 +26,11 @@ material_override = SubResource("StandardMaterial3D_f3ak0")
 mesh = SubResource("BoxMesh_qi13p")
 
 [node name="Player" parent="." instance=ExtResource("1_1alg3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8291, -72.0084, -362.763)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.696076, 0.717968, 0, -0.717968, 0.696076, 0, 1.74599, 0)
-light_energy = 1.399
-light_angular_distance = 50.91
+transform = Transform3D(0.5, 0.621779, -0.602819, 0.433013, 0.423328, 0.795798, 0.75, -0.658927, -0.0575742, 0, 1.74599, 0)
+light_energy = 16.0
 
 [node name="pos1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8096, 1, 1)
@@ -41,19 +41,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75381, 1, 1)
 top_level = true
 
 [node name="ship_solider" parent="." node_paths=PackedStringArray("pos") instance=ExtResource("2_g4aor")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.900494, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.900494, -34.995, 1)
 pos = [NodePath("../pos1"), NodePath("../pos2")]
 solider_type = 1
 dynamic_movement_time = 5.0
 
 [node name="ship_solider2" parent="." node_paths=PackedStringArray("pos") instance=ExtResource("2_g4aor")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01219, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.01219, -34.995, 1)
 pos = [NodePath("../pos1"), NodePath("../pos2")]
 dynamic_movement_time = 5.0
 authority = 1
 
 [node name="ship_solider3" parent="." node_paths=PackedStringArray("pos", "path") groups=["dinning"] instance=ExtResource("2_g4aor")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17958, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17958, -34.995, 1)
 pos = [NodePath("../pos1"), NodePath("../pos2")]
 dynamic_movement_time = 5.0
 authority = 3
@@ -70,3 +70,6 @@ authority = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0209, 0, 6.24122)
 label = "hola"
 group_name = "dinning"
+
+[node name="ship" parent="." instance=ExtResource("5_3kvjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)

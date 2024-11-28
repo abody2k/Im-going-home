@@ -143,7 +143,7 @@ func _physics_process(delta):
 	
 	
 	if mode == MODES.ATTACKING:
-		look_at(player.global_position)
+		look_at(Vector3(player.global_position.x,global_position.y,player.global_position.z))
 
 
 

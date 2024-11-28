@@ -1,9 +1,10 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 50.0
 const JUMP_VELOCITY = 4.5
-const ROTATION_RADIUS = 5
+const ROTATION_RADIUS = 40
+
 var current_rotation = Vector2(180,180)
 var rota = 0.0
 var is_possessing = false
@@ -60,10 +61,14 @@ func movement(_delta : float):
 		return
 	
 	var fb = Input.get_axis("forward","backward")
-	
+	if fb != 0:
+		
+		$AnimationPlayer.play("moving")
+	else :
+		$AnimationPlayer.play("idle")
 	var lr = Input.get_axis("left","right")
 	velocity =$CollisionShape3D.basis.z * SPEED * fb
-	$CollisionShape3D.rotate_y(deg_to_rad(lr * SPEED))
+	$CollisionShape3D.rotate_y(deg_to_rad(lr * SPEED/4))
 	move_and_slide()
 	
 	
@@ -92,7 +97,7 @@ func _input(event):
 		$Camera3D.position.z = sin(deg_to_rad((rota)*0.5)) * ROTATION_RADIUS
 		
 	
-		$Camera3D.look_at($CollisionShape3D/MeshInstance3D.global_position)
+		$Camera3D.look_at($CollisionShape3D.global_position)
 		pass
 		
 	pass
