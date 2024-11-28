@@ -284,6 +284,20 @@ tracks/17/keys = PackedFloat32Array(0, 1, 1.83849e-17, -1.57772e-30, 3.00289e-18
 
 [sub_resource type="Animation" id="Animation_45sha"]
 resource_name = "posessing"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(-0.0333333, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.5, 1, 0, 48.5818, -5.53739, 1, 1, 0, 48.5818, -8.30344)
 
 [sub_resource type="Animation" id="Animation_s4aux"]
 length = 0.001
@@ -413,6 +427,13 @@ tracks/17/path = NodePath("Skeleton3D:Bone.010.R")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = PackedFloat32Array(0, 1, 1.83849e-17, -1.57772e-30, 3.00289e-18, 1)
+tracks/18/type = "position_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Skeleton3D")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrhvg"]
 _data = {
@@ -573,7 +594,7 @@ bones/1/name = "Bone.001"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 1, 0)
 bones/1/enabled = true
-bones/1/position = Vector3(0, 1, 0)
+bones/1/position = Vector3(0.0271502, 0.971495, 0.0184598)
 bones/1/rotation = Quaternion(0, 1.19209e-07, 0, 1)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Bone.002"
